@@ -1,6 +1,9 @@
 package org.rage.catalog.exception;
 
 
+import org.rage.ticket.exception.TicketBaseException;
+
+
 /**
  * ValidationCatalogException represents ...
  *
@@ -8,7 +11,7 @@ package org.rage.catalog.exception;
  * @since 17/02/2015
  *
  */
-public class ValidationCatalogException extends Exception
+public class ValidationCatalogException extends TicketBaseException
 {
 
    /** long for serialVersionUID */
@@ -17,11 +20,23 @@ public class ValidationCatalogException extends Exception
 
    /**
     * Constructs an instance of ValidationCatalogException object.
-    * 
+    *
     * @param errorMessage
     */
    public ValidationCatalogException (final String errorMessage)
    {
       super (errorMessage);
+   }
+
+
+   /**
+    * Constructs an instance of ValidationCatalogException object.
+    * 
+    * @param errorMessage
+    * @param cause
+    */
+   public ValidationCatalogException (final String errorMessage, final Throwable cause)
+   {
+      super (errorMessage, cause);
    }
 }

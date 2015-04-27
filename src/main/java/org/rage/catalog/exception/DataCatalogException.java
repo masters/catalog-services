@@ -1,6 +1,9 @@
 package org.rage.catalog.exception;
 
 
+import org.rage.ticket.exception.TicketBaseException;
+
+
 /**
  * DataCatalogException represents ...
  *
@@ -8,7 +11,7 @@ package org.rage.catalog.exception;
  * @since 17/02/2015
  *
  */
-public class DataCatalogException extends Exception
+public class DataCatalogException extends TicketBaseException
 {
 
    /** long for serialVersionUID */
@@ -17,11 +20,23 @@ public class DataCatalogException extends Exception
 
    /**
     * Constructs an instance of DataCatalogException object.
-    * 
+    *
     * @param errorMessage
     */
    public DataCatalogException (final String errorMessage)
    {
       super (errorMessage);
+   }
+
+
+   /**
+    * Constructs an instance of DataCatalogException object.
+    * 
+    * @param errorMessage
+    * @param cause
+    */
+   public DataCatalogException (final String errorMessage, final Throwable cause)
+   {
+      super (errorMessage, cause);
    }
 }
