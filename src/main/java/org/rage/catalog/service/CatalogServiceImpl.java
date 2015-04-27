@@ -82,18 +82,22 @@ public class CatalogServiceImpl implements CatalogService
       }
       catch (final ValidationCatalogException e)
       {
+         LOG.error (e.getMessage (), e);
          catalog = new Catalog ();
          catalog.setDescription (e.getMessage ());
          catalog.setValid (Boolean.FALSE);
       }
       catch (final DataCatalogException e)
       {
+         LOG.error (e.getMessage (), e);
          catalog = new Catalog ();
          catalog.setDescription (e.getMessage ());
          catalog.setValid (Boolean.FALSE);
       }
       catch (final Exception e)
       {
+         LOG.error (e.getMessage (), e);
+         catalog = new Catalog ();
          catalog.setErrorMessage (e.getMessage ());
          catalog.setValid (Boolean.FALSE);
       }

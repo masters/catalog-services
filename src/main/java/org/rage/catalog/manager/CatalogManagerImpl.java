@@ -3,12 +3,14 @@ package org.rage.catalog.manager;
 
 import org.rage.catalog.exception.DataCatalogException;
 import org.rage.catalog.exception.ValidationCatalogException;
+import org.rage.catalog.util.CatalogTransformHelper;
+import org.rage.ticket.catalog.dao.CatalogDao;
 import org.rage.ticket.model.Catalog;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,6 +25,8 @@ import java.util.List;
 public class CatalogManagerImpl implements CatalogManager
 {
    private final static transient Logger LOG = Logger.getLogger (CatalogManagerImpl.class);
+   @Autowired
+   private CatalogDao                    catalogDao;
 
 
    /**
@@ -39,11 +43,17 @@ public class CatalogManagerImpl implements CatalogManager
          DataCatalogException
    {
       LOG.info ("getCatalogList name: " + catalogName);
-      // TODO Auto-generated method stub
-      final List <Catalog> ca = new ArrayList <Catalog> ();
-      ca.add (new Catalog (1, "x"));
-      ca.add (new Catalog (2, "y"));
-      return ca;
+      List <org.rage.ticket.catalog.model.Catalog> catalogList = null;
+      try
+      {
+         catalogList = catalogDao.list (catalogName);
+      }
+      catch (final Exception e)
+      {
+         LOG.error (e.getMessage (), e);
+         throw new DataCatalogException (e.getMessage ());
+      }
+      return CatalogTransformHelper.transformCatalogList (catalogList);
    }
 
 
@@ -62,8 +72,18 @@ public class CatalogManagerImpl implements CatalogManager
          DataCatalogException
    {
       LOG.info ("getCatalogById name: " + catalogName + ", id: " + id);
-      // TODO Auto-generated method stub
-      return new Catalog (3, "y");
+      org.rage.ticket.catalog.model.Catalog catalog = null;
+
+      try
+      {
+         catalog = catalogDao.getById (catalogName, id);
+      }
+      catch (final Exception e)
+      {
+         LOG.error (e.getMessage (), e);
+         throw new DataCatalogException (e.getMessage ());
+      }
+      return CatalogTransformHelper.transformCatalog (catalog);
    }
 
 }

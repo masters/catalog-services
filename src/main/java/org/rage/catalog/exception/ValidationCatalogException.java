@@ -14,4 +14,14 @@ public class ValidationCatalogException extends Exception
    /** long for serialVersionUID */
    private static final long serialVersionUID = 1L;
 
+
+   /**
+    * Constructs an instance of ValidationCatalogException object.
+    * 
+    * @param errorMessage
+    */
+   public ValidationCatalogException (final String errorMessage)
+   {
+      super (errorMessage);
+   }
 }
