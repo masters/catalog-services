@@ -2,7 +2,6 @@ package org.rage.catalog.manager;
 
 
 import org.rage.catalog.exception.DataCatalogException;
-import org.rage.catalog.exception.ValidationCatalogException;
 import org.rage.catalog.util.CatalogTransformHelper;
 import org.rage.ticket.catalog.dao.CatalogDao;
 import org.rage.ticket.model.Catalog;
@@ -34,12 +33,11 @@ public class CatalogManagerImpl implements CatalogManager
     *
     * @param catalogName
     * @return catalogList
-    * @throws ValidationCatalogException
     * @throws DataCatalogException
     * @since 17/02/2015
     * @see org.rage.catalog.manager.CatalogManager#getCatalogList(java.lang.String)
     */
-   public List <Catalog> getCatalogList (final String catalogName) throws ValidationCatalogException,
+   public List <Catalog> getCatalogList (final String catalogName) throws
          DataCatalogException
    {
       LOG.info ("getCatalogList name: " + catalogName);
@@ -63,12 +61,11 @@ public class CatalogManagerImpl implements CatalogManager
     * @param catalogName
     * @param id
     * @return catalog
-    * @throws ValidationCatalogException
     * @throws DataCatalogException
     * @since 17/02/2015
     * @see org.rage.catalog.manager.CatalogManager#getCatalogById(java.lang.String, java.lang.Integer)
     */
-   public Catalog getCatalogById (final String catalogName, final Integer id) throws ValidationCatalogException,
+   public Catalog getCatalogById (final String catalogName, final Integer id) throws
          DataCatalogException
    {
       LOG.info ("getCatalogById name: " + catalogName + ", id: " + id);
