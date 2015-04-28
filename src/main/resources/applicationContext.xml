@@ -13,6 +13,9 @@
    <context:component-scan base-package="org.rage.catalog" />
    <tx:annotation-driven />
 
+   <bean id="catalogDao" class="org.rage.ticket.catalog.dao.CatalogDaoImpl"/>
+
+   <!-- Database configs -->
    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
       <property name="driverClassName" value="com.mysql.jdbc.Driver" />
       <property name="url" value="jdbc:mysql://localhost:3306/ticket-db" />
@@ -29,5 +32,5 @@
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
 
-   <bean id="catalogDao" class="org.rage.ticket.catalog.dao.CatalogDaoImpl"/>
+   
 </beans>
