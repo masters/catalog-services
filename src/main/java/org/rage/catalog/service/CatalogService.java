@@ -6,7 +6,7 @@ import org.rage.ticket.model.CatalogListWrapper;
 
 
 /**
- * CatalogService represents ...
+ * CatalogService
  *
  * @version $Id$
  * @since 17/02/2015

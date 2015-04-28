@@ -29,9 +29,5 @@
       <property name="sessionFactory" ref="sessionFactory" />
    </bean>
 
-   <bean id="catalogDao" class="org.rage.ticket.catalog.dao.CatalogDaoImpl">
-      <constructor-arg>
-         <ref bean="sessionFactory"/>
-      </constructor-arg>
-   </bean>
+   <bean id="catalogDao" class="org.rage.ticket.catalog.dao.CatalogDaoImpl"/>
 </beans>

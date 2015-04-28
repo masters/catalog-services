@@ -2,8 +2,8 @@ package org.rage.catalog.service;
 
 
 import org.rage.catalog.exception.DataCatalogException;
-import org.rage.catalog.exception.ValidationCatalogException;
 import org.rage.catalog.manager.CatalogManager;
+import org.rage.catalog.util.ExceptionHandleHelper;
 import org.rage.ticket.model.Catalog;
 import org.rage.ticket.model.CatalogListWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 
 
 /**
- * CatalogServiceImpl represents ...
+ * CatalogServiceImpl
  *
  * @version $Id$
  * @since 17/02/2015
@@ -23,6 +23,7 @@ import org.apache.log4j.Logger;
 @Component ("catalogService")
 public class CatalogServiceImpl implements CatalogService
 {
+   @Autowired
    private transient CatalogManager      catalogManager;
    private final static transient Logger LOG = Logger.getLogger (CatalogServiceImpl.class);
 
@@ -45,14 +46,12 @@ public class CatalogServiceImpl implements CatalogService
       catch (final DataCatalogException e)
       {
          LOG.error (e.getMessage (), e);
-         catalogWrapper.setErrorMessage (e.getMessage ());
-         catalogWrapper.setValid (Boolean.FALSE);
+         ExceptionHandleHelper.convertErrorToWrapper (catalogWrapper, e);
       }
       catch (final Exception e)
       {
          LOG.error (e.getMessage (), e);
-         catalogWrapper.setErrorMessage (e.getMessage ());
-         catalogWrapper.setValid (Boolean.FALSE);
+         ExceptionHandleHelper.convertErrorToWrapper (catalogWrapper, e);
       }
       return catalogWrapper;
    }
@@ -77,32 +76,13 @@ public class CatalogServiceImpl implements CatalogService
       catch (final DataCatalogException e)
       {
          LOG.error (e.getMessage (), e);
-         catalog = new Catalog ();
-         catalog.setDescription (e.getMessage ());
-         catalog.setValid (Boolean.FALSE);
+         catalog = ExceptionHandleHelper.convertError (e);
       }
       catch (final Exception e)
       {
          LOG.error (e.getMessage (), e);
-         catalog = new Catalog ();
-         catalog.setErrorMessage (e.getMessage ());
-         catalog.setValid (Boolean.FALSE);
+         catalog = ExceptionHandleHelper.convertError (e);
       }
       return catalog;
-   }
-
-
-   /**
-    * Represents setCatalogManager
-    *
-    * @param catalogManager
-    * @since 17/02/2015
-    *
-    * @todo complete description
-    */
-   @Autowired
-   public void setCatalogManager (final CatalogManager catalogManager)
-   {
-      this.catalogManager = catalogManager;
    }
 }

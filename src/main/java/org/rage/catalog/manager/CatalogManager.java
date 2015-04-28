@@ -22,7 +22,6 @@ public interface CatalogManager
     *
     * @param catalogName
     * @return catalogList
-    * @throws ValidationCatalogException
     * @throws DataCatalogException
     * @since 17/02/2015
     *
@@ -36,7 +35,6 @@ public interface CatalogManager
     * @param catalogName
     * @param id
     * @return catalog
-    * @throws ValidationCatalogException
     * @throws DataCatalogException
     * @since 17/02/2015
     *

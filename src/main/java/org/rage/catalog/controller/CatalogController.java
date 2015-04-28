@@ -16,16 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * CatalogController represents ...
+ * CatalogController
  *
  * @since 16/02/2015
  *
- * @TODO Error handling when wrong parameter were provider etc
  */
 @RestController
 @Controller ("catalogController")
 public class CatalogController
 {
+   @Autowired
    private transient CatalogService catalogService;
 
 
@@ -65,17 +65,4 @@ public class CatalogController
       return catalogService.getCatalogById (catalogName, id);
    }
 
-
-   /**
-    * Represents setCatalogService
-    *
-    * @param catalogService
-    * @since 17/02/2015
-    *
-    */
-   @Autowired
-   public void setCatalogService (final CatalogService catalogService)
-   {
-      this.catalogService = catalogService;
-   }
 }

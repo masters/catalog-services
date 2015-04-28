@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
 import org.rage.ticket.catalog.model.Catalog;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -19,18 +20,8 @@ import java.util.List;
  */
 public class CatalogDaoImpl implements CatalogDao
 {
-   private final SessionFactory sessionFactory;
-
-
-   /**
-    * Constructs an instance of CatalogDaoImpl object.
-    *
-    * @param sessionFactory
-    */
-   public CatalogDaoImpl (final SessionFactory sessionFactory)
-   {
-      this.sessionFactory = sessionFactory;
-   }
+   @Autowired
+   private SessionFactory sessionFactory;
 
 
    /**
@@ -40,8 +31,8 @@ public class CatalogDaoImpl implements CatalogDao
     * @since 21/04/2015
     * @see org.rage.ticket.catalog.dao.CatalogDao#list(java.lang.String)
     */
-   @Transactional
    @SuppressWarnings ("unchecked")
+   @Transactional
    public List <Catalog> list (final String category)
    {
 
@@ -59,7 +50,7 @@ public class CatalogDaoImpl implements CatalogDao
     * @param id
     * @return catalog
     * @since 21/04/2015
-    * @see org.rage.ticket.catalog.dao.CatalogDao#getById(java.lang.String, java.lang.String)
+    * @see org.rage.ticket.catalog.dao.CatalogDao#getById(java.lang.String, java.lang.Integer)
     */
    @SuppressWarnings ("unchecked")
    @Transactional

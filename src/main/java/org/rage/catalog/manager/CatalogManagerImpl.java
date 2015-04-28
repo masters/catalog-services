@@ -1,6 +1,7 @@
 package org.rage.catalog.manager;
 
 
+import org.rage.catalog.exception.CatalogNotFoundException;
 import org.rage.catalog.exception.DataCatalogException;
 import org.rage.catalog.util.CatalogTransformHelper;
 import org.rage.ticket.catalog.dao.CatalogDao;
@@ -37,8 +38,7 @@ public class CatalogManagerImpl implements CatalogManager
     * @since 17/02/2015
     * @see org.rage.catalog.manager.CatalogManager#getCatalogList(java.lang.String)
     */
-   public List <Catalog> getCatalogList (final String catalogName) throws
-         DataCatalogException
+   public List <Catalog> getCatalogList (final String catalogName) throws DataCatalogException
    {
       LOG.info ("getCatalogList name: " + catalogName);
       List <org.rage.ticket.catalog.model.Catalog> catalogList = null;
@@ -65,8 +65,7 @@ public class CatalogManagerImpl implements CatalogManager
     * @since 17/02/2015
     * @see org.rage.catalog.manager.CatalogManager#getCatalogById(java.lang.String, java.lang.Integer)
     */
-   public Catalog getCatalogById (final String catalogName, final Integer id) throws
-         DataCatalogException
+   public Catalog getCatalogById (final String catalogName, final Integer id) throws DataCatalogException
    {
       LOG.info ("getCatalogById name: " + catalogName + ", id: " + id);
       org.rage.ticket.catalog.model.Catalog catalog = null;
@@ -74,6 +73,11 @@ public class CatalogManagerImpl implements CatalogManager
       try
       {
          catalog = catalogDao.getById (catalogName, id);
+
+         if (catalog == null)
+         {
+            throw new CatalogNotFoundException ("Catalog not found");
+         }
       }
       catch (final Exception e)
       {
