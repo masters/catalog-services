@@ -164,7 +164,7 @@
       <repository>
          <id>releases</id>
          <name>Releases S3 Rage</name>
-         <url>https://s3.amazonaws.com/m2-repo/release/</url>
+         <url>http://s3.amazonaws.com/m2-repo/release/</url>
       </repository>
    </repositories>
 </project>
