@@ -42,12 +42,6 @@ public class CatalogServiceImpl implements CatalogService
       {
          catalogWrapper.setCatalogList (catalogManager.getCatalogList (name));
       }
-      catch (final ValidationCatalogException e)
-      {
-         LOG.error (e.getMessage (), e);
-         catalogWrapper.setErrorMessage (e.getMessage ());
-         catalogWrapper.setValid (Boolean.FALSE);
-      }
       catch (final DataCatalogException e)
       {
          LOG.error (e.getMessage (), e);
@@ -79,13 +73,6 @@ public class CatalogServiceImpl implements CatalogService
       try
       {
          catalog = catalogManager.getCatalogById (name, id);
-      }
-      catch (final ValidationCatalogException e)
-      {
-         LOG.error (e.getMessage (), e);
-         catalog = new Catalog ();
-         catalog.setDescription (e.getMessage ());
-         catalog.setValid (Boolean.FALSE);
       }
       catch (final DataCatalogException e)
       {
