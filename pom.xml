@@ -5,7 +5,11 @@
    <artifactId>catalog-services</artifactId>
    <packaging>war</packaging>
    <version>1.0.0</version>
-
+   <name>catalog-services</name>
+   <organization>
+      <name>Rage</name>
+   </organization>
+   
    <properties>
       <spring.version>4.0.6.RELEASE</spring.version>
       <ticket.common.model>1.0.0</ticket.common.model>
@@ -97,6 +101,12 @@
          <version>${mysql.driver.version}</version>
       </dependency>
 
+      <dependency>
+         <groupId>org.rage.manifest</groupId>
+         <artifactId>reader</artifactId>
+         <version>0.0.1</version>
+      </dependency>
+
    </dependencies>
 
    <build>
@@ -107,6 +117,30 @@
             <artifactId>jboss-as-maven-plugin</artifactId>
             <version>7.5.Final</version>
          </plugin>
+         <!-- WAR Manifest Plugin -->
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.6</version>
+            <configuration>
+               <archive>
+                  <manifest>
+                     <addClasspath>true</addClasspath>
+                     <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                  </manifest>
+                  <manifestEntries>
+                     <Build-Operating-System>${os.name}</Build-Operating-System>
+                     <Build-Operating-System-Architecture>${os.arch}</Build-Operating-System-Architecture>
+                     <Build-Operating-System-Version>${os.version}</Build-Operating-System-Version>
+                     <Built-By>${user.name}</Built-By>
+                     <Build-Directory>${project.build.directory}</Build-Directory>
+                     <Build-Time>${maven.build.timestamp}</Build-Time>
+                     <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                  </manifestEntries>
+               </archive>
+            </configuration>
+         </plugin>
       </plugins>
    </build>
+   
 </project>
