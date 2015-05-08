@@ -13,9 +13,11 @@ import java.io.Serializable;
  */
 public class Catalog implements Serializable
 {
-   private Integer id;
-   private String  category;
-   private String  description;
+   /** long for serialVersionUID */
+   private static final long serialVersionUID = 1L;
+   private Integer           id;
+   private String            category;
+   private String            description;
 
 
    /**
@@ -70,6 +72,5 @@ public class Catalog implements Serializable
    {
       this.description = description;
    }
-
 
 }

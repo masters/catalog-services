@@ -18,22 +18,26 @@ public final class CatalogTransformHelper
 {
 
    /**
-    * Represents transformCatalogList
+    * Class that transforms from local model to Domain Ticket Model.
     *
     * @param catalogList
     * @return list
     * @since 21/04/2015
     *
-    * @todo complete description
     */
    public static List <Catalog> transformCatalogList (final List <org.rage.ticket.catalog.model.Catalog> catalogList)
    {
       final List <Catalog> list = new ArrayList <Catalog> ();
+      Catalog catalogTmp = null;
       if (catalogList != null)
       {
          for (final org.rage.ticket.catalog.model.Catalog catalog : catalogList)
          {
-            list.add (new Catalog (catalog.getId (), catalog.getDescription ()));
+            catalogTmp = transformCatalog (catalog);
+            if (catalogTmp != null)
+            {
+               list.add (catalogTmp);
+            }
          }
       }
       return list;
@@ -41,7 +45,7 @@ public final class CatalogTransformHelper
 
 
    /**
-    * Represents transformCatalog
+    * Class that transforms from local model to Domain Ticket Model.
     *
     * @param catalog
     * @return catalog

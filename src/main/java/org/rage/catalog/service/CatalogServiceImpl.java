@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.apache.log4j.Logger;
 
 
-
 /**
  * CatalogServiceImpl
  *
